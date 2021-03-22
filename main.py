@@ -3,7 +3,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import FileResponse
 from typing import Optional, List
 from pydantic import BaseModel
-from .inference import predict
+from inference import predict
 import json
 import pickle
 
