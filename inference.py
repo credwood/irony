@@ -57,7 +57,7 @@ def predict(test_convs,
         prob_answers.append(top_softmax[0][1])
         
     with open(json_file_out, "w") as dump:
-        json.dump({"text": text_convs, "model_responses": answers, "logits_answers": prob_answers}, dump, indent=4)
+        json.dump({"text": test_convs, "model_responses": answers, "logits_answers": prob_answers}, dump, indent=4)
     return [test_convs, answers, prob_answers]
 
 def _top_softmax(prob_dict, tokenizer, num_tokens):

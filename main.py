@@ -22,4 +22,4 @@ def recognize_enteties(test: Test):
     pred = predict(test.text, json_file_out=f'{test.id}.json')
     test.result = pred[1]
     test.softmax = pred[2]
-    return {"message": f"{test.id}, {test.text}, {test.result}, {test.softmax}"}
+    return {"message": test}
