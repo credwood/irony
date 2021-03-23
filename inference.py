@@ -51,7 +51,7 @@ def predict(test_convs,
             output = model(input_tensor,labels=input_tensor,return_dict=True)
         logits = output.logits
         logits = logits[...,-1,:]
-        predicted_prob = F.softmax(logits, dim=-1)
+        predicted_prob = _labels_only_logits(logits, [" Yes", " No"], tokenizer)
         top_softmax = _top_softmax(predicted_prob, tokenizer, num_top_softmax)
         answers.append(top_softmax[0][0])
         prob_answers.append(top_softmax[0][1])
@@ -68,6 +68,13 @@ def _top_softmax(prob_dict, tokenizer, num_tokens):
     _, sorted_indices = torch.sort(prob_dict[:], descending=True)
     sorted_indices = list(sorted_indices.cpu().numpy())
     return [(tokenizer.decode([index]), str(prob_dict[index].item())) for index in sorted_indices[:num_tokens]]
+
+def _labels_only_logits(logits, labels, tokenizer):
+    _logits = logits[:]
+    tokenized_labels = [tokenizer.encode(label)[0] for label in labels]
+    filter_out = [index for index in range(len(logits)) if index not in tokenized_labels]
+    _logits[...,filter_out] = -10**8
+    return F.softmax(_logits, dim=-1)
 
 #log prob(token_j)  = logit_j - log(sum_k exp(logit_k))
 def _log_prob(logits_tensor, labels_lst, num_tokens, tokenizer):
