@@ -1,2 +1,2 @@
 # irony
-is this a joke? query GPT-2 to find out
+is this a joke
