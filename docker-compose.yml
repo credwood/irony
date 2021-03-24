@@ -8,10 +8,9 @@ services:
     depends_on:
       - backend
     volumes:
-        - ./storage:/storage
+        - ./models:/models
+        - ./user_tests:/user_tests
   backend:
     build: backend
     ports:
       - 8080:8080
-    volumes:
-      - ./storage:/storage
