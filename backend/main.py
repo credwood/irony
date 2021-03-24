@@ -27,10 +27,10 @@ def read_root():
 @app.post('/test/')
 def recognize_enteties(test: Test):
     if test.ground_truth is not None:
-        with open(f"{test.id}{time.datetime}_gt.json") as f:
+        with open(f"/user_tests/{test.id}{time.datetime}_gt.json") as f:
             json.dumps(test, f)
     else:
-        pred = predict(test.text, json_file_out=f'{test.id}{time.datetime}.json')
+        pred = predict(test.text, json_file_out=f'/user_tests/{test.id}{time.datetime}.json')
         test.result = pred[1]
         test.softmax = pred[2]
         return {"message": test}

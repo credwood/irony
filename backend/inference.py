@@ -17,7 +17,7 @@ def load_model():
     config = AutoConfig.from_pretrained('gpt2-medium')
 
     model = AutoModelWithLMHead.from_pretrained(
-        f'/content/drive/My Drive/irony_checkpoints/gpt2_medium_joke-3.pt',
+        f'/models/gpt2_medium_joke-3.pt',
         config=config
     )
 
