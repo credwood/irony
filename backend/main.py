@@ -7,7 +7,7 @@ from inference import predict
 import uvicorn
 import json
 import pickle
-import time
+import datetime
 
 
 app = FastAPI()
@@ -18,7 +18,7 @@ class Test(BaseModel):
     text: List[str] = []
     result: Optional[List[str]] = None
     softmax: Optional[List[str]] = None 
-    ground_truth: Optional[List[bool]] = None 
+    ground_truth: Optional[List[int]] = [5] 
 
 @app.get("/")
 def read_root():
@@ -26,11 +26,11 @@ def read_root():
 
 @app.post('/test/')
 def recognize_enteties(test: Test):
-    if test.ground_truth is not None:
-        with open(f"/user_tests/{test.id}{time.datetime}_gt.json") as f:
+    if test.ground_truth[0] != 5:
+        with open(f"/user_tests/{test.id}{datetime.datetime.now()}_gt.json") as f:
             json.dumps(test, f)
     else:
-        pred = predict(test.text, json_file_out=f'/user_tests/{test.id}{time.datetime}.json')
+        pred = predict(test.text, json_file_out=f'/user_tests/{test.id}{datetime.datetime.now()}.json')
         test.result = pred[1]
         test.softmax = pred[2]
         return {"message": test}
