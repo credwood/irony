@@ -23,5 +23,6 @@ setup(
         'transformers==4.0.0',
         'typing==3.7.4.3',
         'uvicorn==0.13.4',
+        'streamlit==0.79.0'
     ],
 )
