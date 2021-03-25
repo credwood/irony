@@ -1,7 +1,7 @@
 # frontend/main.py
 import requests
 import streamlit as st
-
+from backend.main import Test
 # defines an h1 header
 st.title("is this a joke")
 
@@ -10,7 +10,8 @@ text = st.text_input('Input your sentence here:')
 
 # displays a button
 if text:
-    res = requests.post(f"http://backend:8080/test", test.text=[text])
+    test = Test(text=[text])
+    res = requests.post(f"http://backend:8080/test", test=test)
     st.write(f"model response: {res.result[0]}, probability: {res.softmax[0]}")
     st.write(f"does the model's response of {res.result[0]} seem correct?")
     yes = st.button("Yes")
