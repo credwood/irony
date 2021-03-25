@@ -17,10 +17,10 @@ if text:
     no = st.button("No")
     if yes:
         st.write(f"Thank you for your feedback!")
-        res.ground_truth = 1
+        res.ground_truth = [1]
         requests.post(f"http://backend:8080/test", test=res)
     elif no:
-        res.ground_truth = 0
+        res.ground_truth = [0]
         requests.post(f"http://backend:8080/test", test=res)
         st.write(f"Thank you for your feedback!")
     
