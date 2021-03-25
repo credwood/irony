@@ -5,19 +5,7 @@
     <title>is this a joke</title>
 </head>
 <body>
-<form method="post">
-    <input type="string" name="num" value="" />
-    <input type="submit" name="action" value="submit">
-    <input type="submit" name="action" value="submit and download">
-    <p>Result: {{ item.result }}</p>
-    {% if item.result %}
-        <p>Do you think the model's prediction of {{ item.result }} is accurate?</p> 
-        <input type="submit" name="action" value="Yes">
-        <input type="submit" name="action" value="No">
-    {% endif %}
-    {% if item.pressed %}
-        <p>Thank you for your feedback! Your response will be used to improve the model.</p> 
-    {% endif %}
+
 </form>
 
 </body>
