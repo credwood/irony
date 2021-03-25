@@ -6,7 +6,7 @@ from backend.main import Test
 st.title("is this a joke")
 
 #link to about page
-st.write("[about](http://backend:8080/about)")
+st.write("[about](https://credwood.substack.com/irony)")
 
 # displays a text field
 text = st.text_area('max. 500 words') 

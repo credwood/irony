@@ -35,20 +35,6 @@ def recognize_enteties(test: Test):
         test.softmax = pred[2]
         return {"message": test}
 
-@app.post('/about/')
-def about():
-    html_content = """
-    <html>
-        <head>
-            <title>about</title>
-        </head>
-        <body>
-            <p>Some jokes are defined by their context, some jokes are defined by their form. Many are a mix of the two.</p>
-        </body>
-    </html>
-    """
-    return HTMLResponse(content=html_content, status_code=200)
-
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8080)
