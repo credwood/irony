@@ -12,17 +12,18 @@ text = st.text_area('max. 500 words')
 if st.button('submit'):
     if text is not None:
         test = Test(text=[text])
-        res = requests.post(f"http://backend:8080/test", data=test)
+        res = requests.post("http://backend:8080/test", data=test)
         st.write(f"model response: {res.result[0]}, probability: {res.softmax[0]}")
         st.write(f"does the model's response of {res.result[0]} seem correct?")
         yes = st.button("Yes")
         no = st.button("No")
         if yes:
-            st.write(f"Thank you for your feedback!")
+            st.write("Thank you for your feedback!")
             res.ground_truth = [1]
-            requests.post(f"http://backend:8080/test", data=res)
+            requests.post("http://backend:8080/test", data=res)
         elif no:
+            st.write("Thank you for your feedback!")
             res.ground_truth = [0]
-            requests.post(f"http://backend:8080/test", data=res)
-            st.write(f"Thank you for your feedback!")
+            requests.post("http://backend:8080/test", data=res)
+            
     

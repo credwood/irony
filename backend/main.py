@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from typing import Optional, List
 from pydantic import BaseModel
 from inference import predict
@@ -22,7 +22,7 @@ class Test(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "is this a joke"}
+    return RedirectResponse("http://backend:8080/test")
 
 @app.post('/test/')
 def recognize_enteties(test: Test):
