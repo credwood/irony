@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   frontend:
@@ -7,10 +7,8 @@ services:
       - 8501:8501
     depends_on:
       - backend
-    volumes:
-        - ./models:/models
-        - ./user_tests:/user_tests
   backend:
     build: backend
+    ipc: "host"
     ports:
-      - 8080:8080
+      - 8084:8084

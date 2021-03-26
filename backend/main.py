@@ -22,7 +22,7 @@ class Test(BaseModel):
 
 @app.get("/")
 def read_root():
-    return RedirectResponse("http://backend:8080/test")
+    return RedirectResponse("http://backend:8084/test")
 
 @app.post('/test/')
 def recognize_enteties(test: Test):

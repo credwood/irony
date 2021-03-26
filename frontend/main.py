@@ -23,8 +23,8 @@ if st.button('submit'):
                                                             }
                             )
         res = res.json()
-        st.write(f"model response: {res.get("result")[0]}, probability: {res.get("softmax")[0]}")
-        st.write(f"does the model's response of {res.get("result")[0]} seem correct?")
+        st.write(f"model response: {res.get('result')[0]}, probability: {res.get('softmax')[0]}")
+        st.write(f"does the model's response of {res.get('result')[0]} seem correct?")
         yes = st.button("Yes")
         no = st.button("No")
         if yes:
@@ -35,5 +35,3 @@ if st.button('submit'):
             st.write("Thank you for your feedback!")
             res.ground_truth = [0]
             requests.post("http://backend:8080/test", json=res)
-            
-    
