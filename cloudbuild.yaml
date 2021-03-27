@@ -1,11 +1,6 @@
 steps:
-# running docker-compose
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/jokejoke/jokerepo', '.' ]
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/jokejoke/my-image']
-images: ['gcr.io/jokejoke/myimage']
-artifacts:
-  objects:
-    location: 'gs://models/'
-    paths: ['./models']
+  # running docker-compose
+  - name: 'docker/compose:1.26.2'
+    args: ['up', '-d', 'gcr.io/my-project/my-image', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/my-project/my-image']
