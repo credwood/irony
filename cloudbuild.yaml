@@ -5,7 +5,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/jokejoke/my-image']
 env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
+- 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
 images: ['gcr.io/jokejoke/myimage']
 artifacts:
   objects:
