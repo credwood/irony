@@ -2,5 +2,3 @@ steps:
   # running docker-compose
   - name: 'docker/compose:1.26.2'
     args: ['up', '-d']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'irony']
