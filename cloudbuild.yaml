@@ -1,6 +1,6 @@
 steps:
 # running docker-compose
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}', '.' ]
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/irony/jokeim', '.' ]
 images:
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/irony/jokeim'
