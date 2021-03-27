@@ -1,4 +1,13 @@
 steps:
-# running docker-compose
-- name: 'docker/compose:1.28.6'
-  args: ['up', '-d']
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/jokejoke/app', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/jokejoke/app']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'Compute-Engine', '--image', 'gcr.io/jokejoke/app', '--region', 'REGION', '--platform', 'managed']
+images:
+- gcr.io/jokejoke/app
