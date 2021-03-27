@@ -1,3 +1,15 @@
 steps:
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/jokejoke/jokerepo:tag1', '.' ]
-- image: 'us-central1-docker.pkg.dev/jokejoke/jokerepo:tag1'
+# running docker-compose
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/jokejoke/jokerepo', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/jokejoke/my-image']
+env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
+options:
+    machineType: 'N1_HIGHMEM_4'
+images: ['gcr.io/jokejoke/myimage']
+artifacts:
+  objects:
+    location: 'gs://models/'
+    paths: ['./models']
