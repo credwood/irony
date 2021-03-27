@@ -1,5 +1,17 @@
 steps:
   # running docker-compose
-  - name: 'docker/compose:1.26.2'
-    args: ['up', '-d']
+  - name: 'docker/compose:1.28.6'
+    args: ['install']
+  - name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gcb-docker-compose:latest', '.']
+  - name: 'docker/compose:1.28.6'
+  args: ['up', '-d']
+  env:
+  - 'PROJECT_ID=$PROJECT_ID'
+
+  env:
+  - 'HOST=frontend' # running container, container_name defined in the docker-compose.yml
+  - 'PORT=8501'
+
+  images: ['gcr.io/$PROJECT_ID/gcb-docker-compose:latest']
     
