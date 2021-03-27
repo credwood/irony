@@ -1,4 +1,5 @@
 steps:
-# running docker-compose
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/irony/jokeim', '.' ]
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/jokejoke/jokerepo:tag1', '.' ]
+images:
+- 'us-central1-docker.pkg.dev/jokejoke/jokerepo:tag1'
