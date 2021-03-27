@@ -1,5 +1,5 @@
 steps:
-- name: 'joke'
+- name: 'iorny'
   args: [ 'build', '-t', 'us-central1-docker.pkg.dev/jokejoke/jokerepo:tag1', '.' ]
 images:
 - 'us-central1-docker.pkg.dev/jokejoke/jokerepo:tag1'
