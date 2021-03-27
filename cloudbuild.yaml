@@ -1,6 +1,6 @@
 steps:
   # running docker-compose
   - name: 'docker/compose:1.26.2'
-    args: ['up', '-d', 'gcr.io/my-project/my-image', '.']
+    args: ['up', '-d']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/my-project/my-image']
+    args: ['push', 'gcr.io/joke/my-image']
