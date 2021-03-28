@@ -15,8 +15,8 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "python3" ]
+ENTRYPOINT ["python3"]
 
 EXPOSE 8084
 
-CMD ["python", "main.py"]
+CMD ["python3", "main.py"]
