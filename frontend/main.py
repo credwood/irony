@@ -13,13 +13,12 @@ text = st.text_area('max. 500 words')
 # displays a button
 if st.button('submit'):
     if text is not None:
-        res = requests.post("http://backend:8084/test", json={"msg":
-                                                                    {"id": 0,
-                                                                    "text": [text],
-                                                                    "result":[],
-                                                                    "softmax":[],
-                                                                    "ground_truth":[5]
-                                                                    }
+        res = requests.post("http://backend:8084/test", json={
+                                                                "id": 0,
+                                                                "text": [text],
+                                                                "result":[],
+                                                                "softmax":[],
+                                                                "ground_truth":[5]
                                                             }
                             )
         res = res.json()
