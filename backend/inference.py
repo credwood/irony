@@ -17,7 +17,7 @@ def load_model():
     config = AutoConfig.from_pretrained('gpt2-medium')
 
     model = AutoModelWithLMHead.from_pretrained(
-        f'/models/gpt2_medium_joke_50bs-8.pt',
+        f'./models/gpt2_medium_joke_50bs-8.pt',
         config=config
     )
 

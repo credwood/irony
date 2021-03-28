@@ -33,8 +33,7 @@ def recognize_enteties(test: Test):
         pred = predict(test.text, json_file_out=f'/user_tests/{test.id}{datetime.datetime.now()}.json')
         test.result = pred[1]
         test.softmax = pred[2]
-        return {"message": test}
-
+        return test
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8080)
+    uvicorn.run("main:app", host="0.0.0.0", port=8084)
