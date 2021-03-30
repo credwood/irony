@@ -1,4 +1,4 @@
-version: '3'
+version: '2.3'
 
 services:
   frontend:
@@ -11,3 +11,7 @@ services:
     build: backend
     ports:
       - 8084:8084
+    runtime: nvidia
+    volumes:
+    - ./user_tests:/user_tests 
+    - /usr/local/cuda:/usr/local/cuda

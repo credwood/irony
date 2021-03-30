@@ -6,7 +6,6 @@ from pydantic import BaseModel
 from inference import predict
 import uvicorn
 import json
-import pickle
 import datetime
 
 
@@ -27,8 +26,9 @@ def read_root():
 @app.post('/test/')
 def recognize_enteties(test: Test):
     if test.ground_truth[0] != 5:
-        with open(f"/user_tests/{test.id}{datetime.datetime.now()}_gt.json") as f:
-            json.dumps(test, f)
+        with open(f"/user_tests/{test.id}{datetime.datetime.now()}_gt.json", 'w') as f:
+            json.dump(test.json(), f)
+        return {"message": test.ground_truth[0]}
     else:
         pred = predict(test.text, json_file_out=f'/user_tests/{test.id}{datetime.datetime.now()}.json')
         test.result = pred[1]

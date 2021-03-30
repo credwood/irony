@@ -54,10 +54,9 @@ def predict(test_convs,
         predicted_prob = _labels_only_logits(logits, [" Yes", " No"], tokenizer)
         top_softmax = _top_softmax(predicted_prob, tokenizer, num_top_softmax)
         answers.append(top_softmax[0][0])
-        prob_answers.append(top_softmax[0][1])
-        
-    with open(json_file_out, "w") as dump:
-        json.dump({"text": test_convs, "model_responses": answers, "logits_answers": prob_answers}, dump, indent=4)
+        prob_answers.append(str(round(float(top_softmax[0][1]), 3)))
+
+
     return [test_convs, answers, prob_answers]
 
 def _top_softmax(prob_dict, tokenizer, num_tokens):
