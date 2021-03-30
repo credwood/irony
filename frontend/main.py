@@ -11,7 +11,7 @@ session_state = SessionState.get(res=None)
 st.title("is this a joke")
 
 #link to about page
-st.write("[about](https://credwood.substack.com/irony)")
+st.write("[about](https://credwood.substack.com/p/irony)")
 
 # displays a text field
 text = st.text_area('max. 500 words') 
