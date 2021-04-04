@@ -4,7 +4,7 @@ import streamlit as st
 import SessionState
 import json
 
-# keeping track of button pushes
+# keeping track of res for button push state changes
 session_state = SessionState.get(res=None)
 
 # defines an h1 header
