@@ -1,3 +1,4 @@
 # frontend/requirements.txt
 
+numpy==1.18.5
 streamlit==0.79.0
