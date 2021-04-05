@@ -24,7 +24,7 @@ def read_root():
     return RedirectResponse("http://backend:8084/test")
 
 @app.post('/test/')
-def recognize_enteties(test: Test):
+def handle_tests(test: Test):
     if test.ground_truth[0] != 5:
         with open(f"/user_tests/{test.id}{datetime.datetime.now()}_gt.json", 'w') as f:
             json.dump(test.json(), f)
