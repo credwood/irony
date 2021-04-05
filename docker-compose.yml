@@ -14,4 +14,3 @@ services:
     runtime: nvidia
     volumes:
     - ./user_tests:/user_tests 
-    - /usr/local/cuda:/usr/local/cuda
