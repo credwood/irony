@@ -30,7 +30,7 @@ def handle_tests(test: Test):
             json.dump(test.json(), f)
         return {"message": test.ground_truth[0]}
     else:
-        pred = predict(test.text, json_file_out=f'/user_tests/{test.id}{datetime.datetime.now()}.json')
+        pred = predict(test.text)
         test.result = pred[1]
         test.softmax = pred[2]
         return test
