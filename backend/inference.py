@@ -34,8 +34,7 @@ def predict(test_convs,
             json_file_out='add_stats_output.jsonl',
         ):
     """
-    Function for model evaluation. saves and returns `Conversation` objects
-    with model statistics (top SoftMax values for each conversation).
+    Function for model evaluation. Returns text, the model's guess and the probability thereof.
     """
     model.to(device)
     model.eval()
