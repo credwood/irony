@@ -74,11 +74,16 @@ def _labels_only_logits(logits, labels, tokenizer):
     _logits[...,filter_out] = -10**8
     return F.softmax(_logits, dim=-1)
 
-#log prob(token_j)  = logit_j - log(sum_k exp(logit_k))
-def _log_prob(logits_tensor, labels_lst, num_tokens, tokenizer):
-    _, sorted_indices = torch.sort(logits_tensor[:], descending=True)
-    sorted_indices = list(sorted_indices.detach().numpy())
-    logits = logits_tensor.detach.numpy()
-    log_probs = list(logits - log(sum(exp(logits))))
-    #converting logits into log probs shouldn't change indices...
-    return [(tokenizer.decode([index]), str(log_probs[index].item())) for index in sorted_indices[:num_tokens]]
+def _batched_logsoftmax(matrix: torch.Tensor):
+    """Compute log(softmax(row)) for each row of the matrix.
+
+    matrix: shape (batch, n)
+
+    Return: (batch, n). For each i, out[i] should sum to 1.
+
+    Do this without using PyTorch's logsoftmax function.
+    For each row, subtract the maximum first to avoid overflow if the row contains large values.
+    """
+    maxes, _ = torch.max(matrix, dim=-1, keepdim=True)
+    sum_exp = maxes + torch.log(torch.sum(torch.exp(matrix - maxes), dim=-1, keepdim=True))
+    return matrix - sum_exp
